@@ -41,7 +41,7 @@ def draw_piano(whites, blacks):
     white_rects = []
     for i in range(52):
         rect = pygame.draw.rect(screen, 'white', [i * 35, HEIGHT - 300, 35, 300], 0, 2)
-        white_rects.append(rect)
+        white_rects.append(rect) 
         pygame.draw.rect(screen, 'black', [i * 35, HEIGHT - 300, 35, 300], 2, 2)
         key_label = small_font.render(white_notes[i], True, 'black')
         screen.blit(key_label, (i * 35 + 3, HEIGHT - 20))
