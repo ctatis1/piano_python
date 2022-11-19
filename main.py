@@ -1,6 +1,7 @@
 import pygame
 import piano_lists as pl
 from pygame import mixer
+import matplotlib.pyplot as plt
 
 pygame.init()
 pygame.mixer.set_num_channels(50)
@@ -11,7 +12,7 @@ small_font = pygame.font.Font('assets/Terserah.ttf', 16)
 real_small_font = pygame.font.Font('assets/Terserah.ttf', 10)
 fps = 60
 timer = pygame.time.Clock()
-WIDTH = 52 * 35
+WIDTH = 1820
 HEIGHT = 400
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 white_sounds = []
@@ -34,7 +35,7 @@ for i in range(len(white_notes)):
 for i in range(len(black_notes)):
     black_sounds.append(mixer.Sound(f'assets\\notes\\{black_notes[i]}.wav'))
 
-pygame.display.set_caption("Pete's Python Piano")
+pygame.display.set_caption("Python Piano")
 
 
 def draw_piano(whites, blacks):
@@ -200,6 +201,10 @@ while run:
                 if left_dict[event.text.upper()][1] == '#':
                     index = black_labels.index(left_dict[event.text.upper()])
                     black_sounds[index].play(0, 1000)
+                    #plt.plot(index)
+                    #plt.xlabel('time')
+                    #plt.ylabel('disturbance')
+                    #plt.show()
                     active_blacks.append([index, 30])
                 else:
                     index = white_notes.index(left_dict[event.text.upper()])
