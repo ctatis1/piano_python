@@ -12,7 +12,7 @@ small_font = pygame.font.Font('assets/Terserah.ttf', 16)
 real_small_font = pygame.font.Font('assets/Terserah.ttf', 10)
 fps = 60
 timer = pygame.time.Clock()
-WIDTH = 1820
+WIDTH = 48 * 28
 HEIGHT = 400
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 white_sounds = []
@@ -37,29 +37,28 @@ for i in range(len(black_notes)):
 
 pygame.display.set_caption("Python Piano")
 
-
 def draw_piano(whites, blacks):
     white_rects = []
     for i in range(52):
-        rect = pygame.draw.rect(screen, 'white', [i * 35, HEIGHT - 300, 35, 300], 0, 2)
-        white_rects.append(rect) 
-        pygame.draw.rect(screen, 'black', [i * 35, HEIGHT - 300, 35, 300], 2, 2)
-        key_label = small_font.render(white_notes[i], True, 'black')
-        screen.blit(key_label, (i * 35 + 3, HEIGHT - 20))
+        rect = pygame.draw.rect(screen, 'white', [i * 26, HEIGHT - 300, 26, 300], 0, 2)
+        white_rects.append(rect)
+        pygame.draw.rect(screen, 'black', [i * 26, HEIGHT - 300, 26, 300], 2, 2)
+        key_label = small_font.render(pl.white_notes[i], True, 'black')
+        screen.blit(key_label, (i * 26.099, HEIGHT - 20))
     skip_count = 0
     last_skip = 2
     skip_track = 2
     black_rects = []
     for i in range(36):
-        rect = pygame.draw.rect(screen, 'black', [23 + (i * 35) + (skip_count * 35), HEIGHT - 300, 24, 200], 0, 2)
+        rect = pygame.draw.rect(screen, 'black', [23 + (i * 26) + (skip_count * 26), HEIGHT - 300, 14, 200], 0, 2)
         for q in range(len(blacks)):
             if blacks[q][0] == i:
                 if blacks[q][1] > 0:
-                    pygame.draw.rect(screen, 'green', [23 + (i * 35) + (skip_count * 35), HEIGHT - 300, 24, 200], 2, 2)
+                    pygame.draw.rect(screen, 'green', [23 + (i * 26) + (skip_count * 26), HEIGHT - 300, 14, 200], 2, 2)
                     blacks[q][1] -= 1
 
-        key_label = real_small_font.render(black_labels[i], True, 'white')
-        screen.blit(key_label, (25 + (i * 35) + (skip_count * 35), HEIGHT - 120))
+        key_label = real_small_font.render(pl.black_labels[i], True, 'white')
+        screen.blit(key_label, (25 + (i * 26) + (skip_count * 26), HEIGHT - 120))
         black_rects.append(rect)
         skip_track += 1
         if last_skip == 2 and skip_track == 3:
@@ -74,7 +73,7 @@ def draw_piano(whites, blacks):
     for i in range(len(whites)):
         if whites[i][1] > 0:
             j = whites[i][0]
-            pygame.draw.rect(screen, 'green', [j * 35, HEIGHT - 100, 35, 100], 2, 2)
+            pygame.draw.rect(screen, 'green', [j * 26, HEIGHT - 100, 26, 100], 2, 2)
             whites[i][1] -= 1
 
     return white_rects, black_rects, whites, blacks
@@ -82,59 +81,59 @@ def draw_piano(whites, blacks):
 
 def draw_hands(rightOct, leftOct, rightHand, leftHand):
     # left hand
-    pygame.draw.rect(screen, 'dark gray', [(leftOct * 245) - 175, HEIGHT - 60, 245, 30], 0, 4)
-    pygame.draw.rect(screen, 'black', [(leftOct * 245) - 175, HEIGHT - 60, 245, 30], 4, 4)
+    pygame.draw.rect(screen, 'dark gray', [(leftOct * 191) - 175, HEIGHT - 60, 191, 30], 0, 4)
+    pygame.draw.rect(screen, 'black', [(leftOct * 191) - 175, HEIGHT - 60, 191, 30], 4, 4)
     text = small_font.render(leftHand[0], True, 'white')
-    screen.blit(text, ((leftOct * 245) - 165, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 168, HEIGHT - 55))
     text = small_font.render(leftHand[2], True, 'white')
-    screen.blit(text, ((leftOct * 245) - 130, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 138, HEIGHT - 55))
     text = small_font.render(leftHand[4], True, 'white')
-    screen.blit(text, ((leftOct * 245) - 95, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 112, HEIGHT - 55))
     text = small_font.render(leftHand[5], True, 'white')
-    screen.blit(text, ((leftOct * 245) - 60, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 89, HEIGHT - 55))
     text = small_font.render(leftHand[7], True, 'white')
-    screen.blit(text, ((leftOct * 245) - 25, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 66, HEIGHT - 55))
     text = small_font.render(leftHand[9], True, 'white')
-    screen.blit(text, ((leftOct * 245) + 10, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 36, HEIGHT - 55))
     text = small_font.render(leftHand[11], True, 'white')
-    screen.blit(text, ((leftOct * 245) + 45, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 9, HEIGHT - 55))
     text = small_font.render(leftHand[1], True, 'black')
-    screen.blit(text, ((leftOct * 245) - 148, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 153, HEIGHT - 55))
     text = small_font.render(leftHand[3], True, 'black')
-    screen.blit(text, ((leftOct * 245) - 113, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 123, HEIGHT - 55))
     text = small_font.render(leftHand[6], True, 'black')
-    screen.blit(text, ((leftOct * 245) - 43, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 78, HEIGHT - 55))
     text = small_font.render(leftHand[8], True, 'black')
-    screen.blit(text, ((leftOct * 245) - 8, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) - 45, HEIGHT - 55))
     text = small_font.render(leftHand[10], True, 'black')
-    screen.blit(text, ((leftOct * 245) + 27, HEIGHT - 55))
+    screen.blit(text, ((leftOct * 191) -20, HEIGHT - 55))
     # right hand
-    pygame.draw.rect(screen, 'dark gray', [(rightOct * 245) - 175, HEIGHT - 60, 245, 30], 0, 4)
-    pygame.draw.rect(screen, 'black', [(rightOct * 245) - 175, HEIGHT - 60, 245, 30], 4, 4)
+    pygame.draw.rect(screen, 'dark gray', [(rightOct * 191) - 175, HEIGHT - 60, 191, 30], 0, 4)
+    pygame.draw.rect(screen, 'black', [(rightOct * 191) - 175, HEIGHT - 60, 191, 30], 4, 4)
     text = small_font.render(rightHand[0], True, 'white')
-    screen.blit(text, ((rightOct * 245) - 165, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 168, HEIGHT - 55))
     text = small_font.render(rightHand[2], True, 'white')
-    screen.blit(text, ((rightOct * 245) - 130, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 138, HEIGHT - 55))
     text = small_font.render(rightHand[4], True, 'white')
-    screen.blit(text, ((rightOct * 245) - 95, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 112, HEIGHT - 55))
     text = small_font.render(rightHand[5], True, 'white')
-    screen.blit(text, ((rightOct * 245) - 60, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 89, HEIGHT - 55))
     text = small_font.render(rightHand[7], True, 'white')
-    screen.blit(text, ((rightOct * 245) - 25, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 66, HEIGHT - 55))
     text = small_font.render(rightHand[9], True, 'white')
-    screen.blit(text, ((rightOct * 245) + 10, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 36, HEIGHT - 55))
     text = small_font.render(rightHand[11], True, 'white')
-    screen.blit(text, ((rightOct * 245) + 45, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 9, HEIGHT - 55))
     text = small_font.render(rightHand[1], True, 'black')
-    screen.blit(text, ((rightOct * 245) - 148, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 153, HEIGHT - 55))
     text = small_font.render(rightHand[3], True, 'black')
-    screen.blit(text, ((rightOct * 245) - 113, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 123, HEIGHT - 55))
     text = small_font.render(rightHand[6], True, 'black')
-    screen.blit(text, ((rightOct * 245) - 43, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 78, HEIGHT - 55))
     text = small_font.render(rightHand[8], True, 'black')
-    screen.blit(text, ((rightOct * 245) - 8, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) - 45, HEIGHT - 55))
     text = small_font.render(rightHand[10], True, 'black')
-    screen.blit(text, ((rightOct * 245) + 27, HEIGHT - 55))
+    screen.blit(text, ((rightOct * 191) -20, HEIGHT - 55))
 
 
 def draw_title_bar():
@@ -145,9 +144,9 @@ def draw_title_bar():
     #img = pygame.transform.scale(pygame.image.load('assets/logo.png'), [150, 150])
     #screen.blit(img, (-20, -30))
     title_text = font.render('Python Programmable Piano!', True, 'white')
-    screen.blit(title_text, (298, 18))
+    screen.blit(title_text, (98, 18))
     title_text = font.render('Python Programmable Piano!', True, 'black')
-    screen.blit(title_text, (300, 20))
+    screen.blit(title_text, (100, 20))
 
 
 run = True
