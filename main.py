@@ -35,7 +35,7 @@ for i in range(len(white_notes)):
 for i in range(len(black_notes)):
     black_sounds.append(mixer.Sound(f'assets\\notes\\{black_notes[i]}.wav'))
 
-pygame.display.set_caption("Python Piano")
+pygame.display.set_caption("Piano Waves")
 
 def draw_piano(whites, blacks):
     white_rects = []
@@ -141,11 +141,9 @@ def draw_title_bar():
     screen.blit(instruction_text, (WIDTH - 500, 10))
     instruction_text2 = medium_font.render('Left/Right Arrows Change Right Hand', True, 'black')
     screen.blit(instruction_text2, (WIDTH - 500, 50))
-    #img = pygame.transform.scale(pygame.image.load('assets/logo.png'), [150, 150])
-    #screen.blit(img, (-20, -30))
-    title_text = font.render('Python Programmable Piano!', True, 'white')
+    title_text = font.render('Piano Waves', True, 'white')
     screen.blit(title_text, (98, 18))
-    title_text = font.render('Python Programmable Piano!', True, 'black')
+    title_text = font.render('Piano Waves', True, 'black')
     screen.blit(title_text, (100, 20))
 
 
