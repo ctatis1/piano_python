@@ -1,20 +1,3 @@
-"""
-Piano = Multiple octaves
-1 Octave = 7 White keys  + 5 Blck keys
-
-White keys: C, D, E, F, G, A, B
-Black Key: Flat(b), Sharp(#) {Realtive to white keys}
-
-Understand waves: Mathematical aspect
-y = A sin(wt - kx)
-w = Angular frequency = 2.pi.f
-k = Wave number = 2.pi./lamda
-
-y = A sin (wt) 
-y(f) = A sin(2.pi.f.t)
-
-Equal Temperament System: note_freq = base_freq * 2 ** (n/12)
-"""
 
 import numpy as np #pip install numpy
 from scipy.io.wavfile import write #pip install scipy
@@ -60,4 +43,4 @@ if __name__ == '__main__':
         data = get_song_data(note)
 
         data = data * (16300/np.max(data))
-        write(f'notes\\{note}.wav', sample_rate, data.astype(np.int16))
+        #write(f'notes\\{note}.wav', sample_rate, data.astype(np.int16))
